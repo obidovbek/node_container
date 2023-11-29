@@ -1,4 +1,8 @@
 import { Container, ContainerModule, interfaces } from "inversify";
+import { AmocrmController } from "./amocrm/amocrm.controller";
+import { AmocrmService } from "./amocrm/amocrm.service";
+import { IAmocrmController } from "./amocrm/interfaces/amocrm.controller.interface";
+import { IAmocrmService } from "./amocrm/interfaces/amocrm.service.interface";
 import { App } from "./app";
 import { ConfigService } from "./config/config.service";
 import { IConfigService } from "./config/config.service.interface";
@@ -13,6 +17,8 @@ export interface IBootstrapReturn{
 const appBindings = new ContainerModule((bind:interfaces.Bind)=>{
     bind<IExeptionFilter>(TYPES.ExeptionFilter).to(ExeptionFilter),
     bind<IConfigService>(TYPES.ConfigService).to(ConfigService).inSingletonScope(),
+    bind<IAmocrmController>(TYPES.AmocrmController).to(AmocrmController),
+    bind<IAmocrmService>(TYPES.AmocrmService).to(AmocrmService)
     bind<App>(TYPES.Application).to(App)
 })
 async function bootstrap(): Promise<IBootstrapReturn>{
