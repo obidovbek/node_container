@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start:dev": "cross-env NODE_ENV=development nodemon",
-    "start:prod": "cross-env NODE_ENV=production nodemon"
+    "start:prod": "cross-env NODE_ENV=production nodemon",
+		"build": "cross-env NODE_ENV=production tsc"
   },
   "author": "Obidov Bekzod",
   "license": "ISC",
