@@ -1,7 +1,6 @@
 export const TYPES = {
-	Application: Symbol.for('Application'),
+    Application: Symbol.for('Application'),
     ConfigService: Symbol.for('ConfigService'),
-    ExeptionFilter: Symbol.for('ExeptionFilter'),
-    AmocrmController: Symbol.for('AmocrmController'),
-    AmocrmService: Symbol.for('AmocrmService')
+    ExeptionFilter:Symbol.for('ExeptionFilter'),
+    PostgresService: Symbol.for('PostgresService')
 }
