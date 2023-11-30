@@ -6,6 +6,7 @@ import { TYPES } from './types';
 import { ConfigService } from './config/config.service';
 import { ExeptionFilter } from './errors/exeption.filter';
 import { PostgresService } from './database/postgres.service';
+import { UserController } from './users/users.controller';
 
 @injectable()
 export class App{
@@ -15,13 +16,14 @@ export class App{
     constructor(
         @inject(TYPES.ConfigService) private configService:ConfigService,
         @inject(TYPES.ExeptionFilter) private exeptionFilter:ExeptionFilter,
-        @inject(TYPES.PostgresService) private postgresService:PostgresService
+        @inject(TYPES.PostgresService) private postgresService:PostgresService,
+        @inject(TYPES.UserController) private userController:UserController
     ){
         this.app = express();
         this.port = parseInt(this.configService.get('PORT')) || 8000;
     }
     useRoutes(){
-
+        this.app.use('/users', this.userController.router);
     }
     useExeptionFilters(){
         this.app.use(this.exeptionFilter.catch.bind(this.exeptionFilter))

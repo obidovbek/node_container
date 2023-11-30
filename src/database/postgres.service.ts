@@ -1,8 +1,9 @@
 import { inject, injectable } from "inversify";
-import { Sequelize } from "sequelize";
+import { Sequelize } from "sequelize-typescript";
 import { ConfigService } from "../config/config.service";
 import { postgresConfig } from "../config/postgres.config";
 import { TYPES } from "../types";
+import { User } from "../users/user.model";
 import { IPostgresService } from "./postgres.service.interface";
 @injectable()
 export class PostgresService implements IPostgresService{
@@ -17,7 +18,7 @@ export class PostgresService implements IPostgresService{
             port: parseInt(this.configService.get('SEQUELIZE_PORT')),
             dialect: 'postgres',
         })
-
+        this.sequelize.addModels([User])
     }
 
     async connect(){
